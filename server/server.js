@@ -1,13 +1,22 @@
 const express = require('express');
 
+// enabling colors package
+const colors = require('colors');
+
 // enabling environment variables
 const dotenv = require('dotenv').config();
 
 // Custom error handling from middleWare
 const {errorHandler} = require('./middleware/errorMiddleware.js');
 
+// DB connection
+const connectDB = require('./config/db.js');
+
 // use of environment variable of PORT
 const port = process.env.PORT || 5000;
+
+// starting db connection
+connectDB();
 
 const app = express();
 
