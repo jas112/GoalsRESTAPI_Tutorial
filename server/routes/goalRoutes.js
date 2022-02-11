@@ -6,6 +6,7 @@ const { getGoals,
         deleteGoal, 
     } = require('../controllers/goalController.js')
 
+const { protect } = require('../middleware/authMiddleware.js');
 
 // app.get('/api/goals', (req, res) => {
 //     res.json({"message": 'Get goals...'});
@@ -25,7 +26,9 @@ const { getGoals,
 
 // Simplification of routes = '/'
 
-router.route('/').get(getGoals).post(setGoal);
+// router.route('/').get(getGoals).post(setGoal);
+
+router.route('/').get(protect, getGoals).post(protect, setGoal);
 
 // router.put('/:id', (req, res) => {
 //     res.status(200).json({"message": `Update goal ${req.params.id}...from routes`});
@@ -41,7 +44,9 @@ router.route('/').get(getGoals).post(setGoal);
 
 // Simplification of routes = '/:id'
 
-router.route('/:id').put(updateGoal).delete(deleteGoal);
+// router.route('/:id').put(updateGoal).delete(deleteGoal);
+
+router.route('/:id').put(protect, updateGoal).delete(protect, deleteGoal);
 
 
 module.exports = router;

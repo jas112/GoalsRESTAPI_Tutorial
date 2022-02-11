@@ -28,7 +28,8 @@ app.use(express.urlencoded({ extended: false }));
 //     res.json({"message": 'Get goals...'});
 // });
 
-app.use('/api/goals', require('./routes/goalRoutes.js'))
+app.use('/api/goals', require('./routes/goalRoutes.js'));
+app.use('/api/users', require('./routes/userRoutes.js'))
 
 // use custom error handling from middleware
 app.use(errorHandler);
